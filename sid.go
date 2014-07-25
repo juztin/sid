@@ -1,3 +1,4 @@
+// Package sid provides a way to parse Microsoft SID's from []byte to a string.
 package sid
 
 import (
@@ -23,6 +24,8 @@ func ntAuthority(b []byte) uint64 {
 		uint64(b[0])<<40
 }
 
+// New returns a parsed SID. The given data must be in []byte{int} format.
+// 		New([]byte{1, 5, 0, 0, 0, 0, 0, 5, 21, 0, 0, 0, 43, 52, 57, 115, 230, 121, 21, 81, 132, 12, 135, 9, 129, 22, 0, 0,})
 func New(b []byte) (string, error) {
 	if b == nil {
 		return "", fmt.Errorf("nil []byte received")
